@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-cream text-ink font-body antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-display;
+}
+
+/* Markdown content styles */
+.markdown {
+  @apply font-body text-ink leading-relaxed;
+}
+.markdown h1 { @apply text-3xl font-bold mt-2 mb-6 pb-2 border-b border-lightGray; }
+.markdown h2 { @apply text-2xl font-bold mt-10 mb-4; }
+.markdown h3 { @apply text-xl font-semibold mt-8 mb-3; }
+.markdown h4 { @apply text-lg font-semibold mt-6 mb-2; }
+.markdown p  { @apply my-4; }
+.markdown ul { @apply list-disc pl-6 my-3 space-y-1; }
+.markdown ol { @apply list-decimal pl-6 my-3 space-y-1; }
+.markdown blockquote { @apply border-l-4 border-accent-orange bg-lightGray/50 px-4 py-2 my-4 italic; }
+.markdown a { @apply text-accent-blue underline underline-offset-2 hover:text-accent-orange; }
+.markdown code:not(pre code) { @apply bg-lightGray text-ink px-1.5 py-0.5 rounded text-sm font-mono; }
+.markdown pre {
+  @apply bg-ink text-cream rounded-lg p-4 my-4 overflow-x-auto text-sm font-mono;
+}
+.markdown pre code { @apply bg-transparent text-cream p-0; }
+.markdown table { @apply w-full my-4 border-collapse; }
+.markdown th, .markdown td { @apply border border-lightGray px-3 py-2 text-left; }
+.markdown th { @apply bg-lightGray font-semibold; }
+
+/* Prism syntax highlighting (minimal) */
+.markdown pre code .token.comment { @apply text-midGray italic; }
+.markdown pre code .token.keyword { @apply text-accent-orange; }
+.markdown pre code .token.string  { @apply text-accent-green; }
+.markdown pre code .token.number  { @apply text-accent-blue; }
+.markdown pre code .token.function { @apply text-accent-blue; }
+.markdown pre code .token.boolean { @apply text-accent-orange; }
+.markdown pre code .token.operator { @apply text-cream; }
+.markdown pre code .token.punctuation { @apply text-midGray; }
+
+/* Chat message bubbles */
+.chat-bubble-user {
+  @apply bg-accent-orange text-cream rounded-2xl rounded-br-sm px-4 py-2 max-w-[85%] self-end;
+}
+.chat-bubble-assistant {
+  @apply bg-lightGray text-ink rounded-2xl rounded-bl-sm px-4 py-2 max-w-[85%] self-start whitespace-pre-wrap;
+}
+
+/* Sidebar tree */
+.tree-link {
+  @apply block px-3 py-1.5 rounded text-sm hover:bg-lightGray transition-colors cursor-pointer;
+}
+.tree-link.active {
+  @apply bg-accent-orange/15 text-accent-orange font-semibold;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { @apply bg-midGray/40 rounded; }
+::-webkit-scrollbar-thumb:hover { @apply bg-midGray; }

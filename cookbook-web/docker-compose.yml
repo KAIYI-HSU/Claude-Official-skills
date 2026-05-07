@@ -1,0 +1,26 @@
+services:
+  cookbook-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cookbook-web:latest
+    container_name: cookbook-web
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      # 將上層倉庫的 cookbooks/ 唯讀掛載進容器，方便即時更新文件
+      - ../cookbooks:/app/cookbooks:ro
+      # embedding 結果持久化，避免每次啟動重算
+      - cookbook-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  cookbook-data:
